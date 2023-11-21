@@ -118,8 +118,4 @@ jobs:
           commit-message: "Update code"
 
       - name: Merge pull request
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge $GITHUB_HEAD_REF --auto
-
-
+        run: gh pr merge --auto
