@@ -109,7 +109,10 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -am "Update code"
+          git pull origin feature-branch
           git push origin feature-branch
+          git push -f origin feature-branch
+
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
