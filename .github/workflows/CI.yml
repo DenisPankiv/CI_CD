@@ -123,4 +123,5 @@ jobs:
       - name: Merge pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge ${{ steps.update.outputs.pull_request_number }} --auto
+        run: gh pr merge ${{ github.event.before }} ${{ github.sha }} --auto
+
