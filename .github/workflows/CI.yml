@@ -113,6 +113,9 @@ jobs:
           git push origin feature-branch
           git push -f origin feature-branch
 
+      - name: Install GitHub CLI
+        run: |
+          curl -fsSL https://cli.github.com/install.sh | sh
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
