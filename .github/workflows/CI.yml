@@ -120,5 +120,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update code"
 
-      - name: Merge pull request
-        run: gh pr merge --auto
+       - name: Merge pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge ${{ steps.update.outputs.pull_request_number }} --auto
