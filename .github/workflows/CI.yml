@@ -106,13 +106,10 @@ jobs:
 
       - name: Commit and push changes
         run: |
-         git config --local user.email "action@github.com"
-         git config --local user.name "GitHub Action"
-         git pull origin feature-branch 
-         git commit -am "Update code"
-         git push origin feature-branch
-
-
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Update code"
+          git push origin feature-branch
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
