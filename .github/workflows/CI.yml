@@ -96,3 +96,30 @@ jobs:
       with:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
+  update:
+    runs-on: windows-latest # Use an appropriate OS for git commands
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create and checkout a new branch
+        run: git checkout -b feature-branch
+
+      # Make changes to your code here
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Update code"
+          git push origin feature-branch
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update code"
+
+      - name: Merge pull request
+        run: gh pr merge --auto
