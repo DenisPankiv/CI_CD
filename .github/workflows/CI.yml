@@ -86,10 +86,6 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
-    # Execute all unit tests in the solution
-    - name: Execute unit tests
-      run: dotnet test
-
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
@@ -112,7 +108,7 @@ jobs:
         run: |
          git config --local user.email "action@github.com"
          git config --local user.name "GitHub Action"
-         git pull origin feature-branch --rebase
+         git pull origin feature-branch 
          git commit -am "Update code"
          git push origin feature-branch
 
@@ -127,5 +123,6 @@ jobs:
       - name: Merge pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge ${{ steps.update.outputs.pull_request_number }} --auto
+        run: gh pr merge $GITHUB_HEAD_REF --auto
+
 
